@@ -21,7 +21,7 @@ app = Sanic(__name__)
 Compress(app)
 ```
 
-Alternatively, if you want to initialize the `Compress` class later, you can do so with the `init_app` method;
+Alternatively, if you want to initialize the `Compress` class later, you can do so with the `init_app` method:
 
 ```python
 compress = Compress()
@@ -36,7 +36,7 @@ Within the Sanic application config you can provide the following settings to co
 
 
 `COMPRESS_MIMETYPES`: Set the list of mimetypes to compress here.
-- Default: `['text/html','text/css','text/xml','application/json','application/javascript']`
+- Default: `{'text/html','text/css','text/xml','application/json','application/javascript'}`
 
 `COMPRESS_LEVEL`: Specifies the gzip compression level (1-9).
 - Default: `6`
