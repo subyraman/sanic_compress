@@ -53,7 +53,7 @@ from sanic import Sanic
 from sanic_compress import Compress
 
 app = Sanic(__name__)
-app.config['COMPRESS_MIMETYPES'] = set(['text/html', 'application/json'])
+app.config['COMPRESS_MIMETYPES'] = {'text/html', 'application/json'}
 app.config['COMPRESS_LEVEL'] = 4
 app.config['COMPRESS_MIN_SIZE'] = 300
 Compress(app)
