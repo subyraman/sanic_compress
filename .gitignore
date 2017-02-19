@@ -1,0 +1,7 @@
+.env
+*sublime*
+*.egg*
+.cache
+__pycache__
+build
+dist
