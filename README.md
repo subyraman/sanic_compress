@@ -1,4 +1,4 @@
-### sanic_compress
+# sanic_compress
 
 sanic_compress is an extension which allows you to easily gzip your Sanic responses. It is a port of the [Flask-Compress](https://github.com/libwilliam/flask-compress) extension.
 
@@ -34,17 +34,21 @@ compress.init_app(app)
 
 Within the Sanic application config you can provide the following settings to control the behavior of sanic_compress. None of the settings are required.
 
-| Option | Description | Default |
-| ------ | ----------- | ------- |
-| `COMPRESS_MIMETYPES` | Set the list of mimetypes to compress here. | `[`<br>`'text/html',`<br>`'text/css',`<br>`'text/xml',`<br>`'application/json',`<br>`'application/javascript'`<br>`]` |
-| `COMPRESS_LEVEL` | Specifies the gzip compression level (1-9). | `6` |
-| `COMPRESS_MIN_SIZE` | Specifies the minimum file size threshold for compressing files. | `500` |
+
+`COMPRESS_MIMETYPES`: Set the list of mimetypes to compress here.
+- Default: `['text/html','text/css','text/xml','application/json','application/javascript']`
+
+`COMPRESS_LEVEL`: Specifies the gzip compression level (1-9).
+- Default: `6`
+
+`COMPRESS_MIN_SIZE`: Specifies the minimum size (in bytes) threshold for compressing responses.
+- Default: `500`
 
 A higher `COMPRESS_LEVEL` will result in a gzipped response that is smaller, but the compression will take longer.
 
 Example of using custom configuration:
 
-```
+```python
 from sanic import Sanic
 from sanic_compress import Compress
 
