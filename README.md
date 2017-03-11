@@ -21,15 +21,6 @@ app = Sanic(__name__)
 Compress(app)
 ```
 
-Alternatively, if you want to initialize the `Compress` class later, you can do so with the `init_app` method:
-
-```python
-compress = Compress()
-app = Flask(__name__)
-compress.init_app(app)
-```
-
-
 ## Options
 
 Within the Sanic application config you can provide the following settings to control the behavior of sanic_compress. None of the settings are required.
