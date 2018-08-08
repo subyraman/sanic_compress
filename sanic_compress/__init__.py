@@ -40,8 +40,7 @@ class Compress(object):
                 'Content-Encoding' in response.headers):
             return response
 
-        gzip_content = self.compress(response)
-        response.body = gzip_content
+        response.body = gzip.compress(response.body, compresslevel=self.app.config['COMPRESS_LEVEL'])
 
         response.headers['Content-Encoding'] = 'gzip'
         response.headers['Content-Length'] = len(response.body)
@@ -54,10 +53,3 @@ class Compress(object):
             response.headers['Vary'] = 'Accept-Encoding'
 
         return response
-
-    def compress(self, response):
-        out = gzip.compress(
-            response.body,
-            compresslevel=self.app.config['COMPRESS_LEVEL'])
-
-        return out
