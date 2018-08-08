@@ -1,4 +1,4 @@
-import gzip
+from gzip import compress
 
 DEFAULT_MIME_TYPES = frozenset([
     'text/html', 'text/css', 'text/xml',
@@ -40,7 +40,7 @@ class Compress(object):
                 'Content-Encoding' in response.headers):
             return response
 
-        response.body = gzip.compress(response.body, compresslevel=self.app.config['COMPRESS_LEVEL'])
+        response.body = compress(response.body, compresslevel=self.app.config['COMPRESS_LEVEL'])
 
         response.headers['Content-Encoding'] = 'gzip'
         response.headers['Content-Length'] = len(response.body)
