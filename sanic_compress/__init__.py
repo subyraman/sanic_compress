@@ -1,4 +1,4 @@
-import gzip
+from gzip import compress
 
 DEFAULT_MIME_TYPES = frozenset([
     'text/html', 'text/css', 'text/xml',
@@ -22,9 +22,7 @@ class Compress(object):
         for k, v in defaults:
             app.config.setdefault(k, v)
 
-        @app.middleware('response')
-        async def compress_response(request, response):
-            return (await self._compress_response(request, response))
+        app.register_middleware(self._compress_response)
 
     async def _compress_response(self, request, response):
         accept_encoding = request.headers.get('Accept-Encoding', '')
@@ -42,8 +40,7 @@ class Compress(object):
                 'Content-Encoding' in response.headers):
             return response
 
-        gzip_content = self.compress(response)
-        response.body = gzip_content
+        response.body = compress(response.body, compresslevel=self.app.config['COMPRESS_LEVEL'])
 
         response.headers['Content-Encoding'] = 'gzip'
         response.headers['Content-Length'] = len(response.body)
@@ -56,10 +53,3 @@ class Compress(object):
             response.headers['Vary'] = 'Accept-Encoding'
 
         return response
-
-    def compress(self, response):
-        out = gzip.compress(
-            response.body,
-            compresslevel=self.app.config['COMPRESS_LEVEL'])
-
-        return out
