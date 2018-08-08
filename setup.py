@@ -12,7 +12,7 @@ setup(
     version='0.1.1',
     description='An extension which allows you to easily gzip your Sanic responses.',
     long_description=long_description,
-    url='http://github.com/subyraman/sanic_session',
+    url='http://github.com/subyraman/sanic_compress',
     author='Suby Raman',
     license='MIT',
     packages=['sanic_compress'],
