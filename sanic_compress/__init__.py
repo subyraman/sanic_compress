@@ -22,9 +22,7 @@ class Compress(object):
         for k, v in defaults:
             app.config.setdefault(k, v)
 
-        @app.middleware('response')
-        async def compress_response(request, response):
-            return (await self._compress_response(request, response))
+        app.register_middleware(self._compress_response)
 
     async def _compress_response(self, request, response):
         accept_encoding = request.headers.get('Accept-Encoding', '')
