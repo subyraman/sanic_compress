@@ -12,6 +12,12 @@ def j(request, length):
     return json(data)
 
 
+@app.route('/ping/<cnt_pong:int>')
+def ping(request, cnt_pong):
+    """ Handler to get humanity result"""
+    return json({"success": True, "result": ["pong"] * cnt_pong})
+
+
 @app.route('/')
 def h(request):
     res = "".join(['h' for i in range(int(501))])
