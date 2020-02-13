@@ -9,7 +9,7 @@ except:
 
 setup(
     name='sanic_compress',
-    version='0.1.1',
+    version='0.1.2',
     description='An extension which allows you to easily gzip your Sanic responses.',
     long_description=long_description,
     url='http://github.com/subyraman/sanic_session',
