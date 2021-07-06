@@ -31,10 +31,11 @@ class Compress(object):
         content_length = len(response.body)
         content_type = response.content_type
 
-        if ';' in response.content_type:
+        if response.content_type and ';' in response.content_type:
             content_type = content_type.split(';')[0]
 
-        if (content_type not in self.app.config['COMPRESS_MIMETYPES'] or
+        if (not response.content_type or
+            content_type not in self.app.config['COMPRESS_MIMETYPES'] or
             'gzip' not in accept_encoding.lower() or
             not 200 <= response.status < 300 or
             (content_length is not None and
